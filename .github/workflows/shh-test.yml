@@ -37,6 +37,7 @@ jobs:
       - name: Print SSH USER
         run: echo "$SSH_USER"
       - name: Check workflow directory
-        run: ls -la
+        run: ls -la ${{ github.action_path }}
+        run: ls -la ${{ github.action_path }}
       - name: Run test command
         run: ssh staging 'echo "hello there" >> github-runner-was-here.txt'
