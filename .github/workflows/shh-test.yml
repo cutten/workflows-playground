@@ -3,6 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions with SSH 🚀
 
 on:
   workflow_dispatch:
+    inputs:
       environment:
         description: 'Environment to update config'
         type: environment
