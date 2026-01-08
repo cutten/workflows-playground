@@ -37,9 +37,9 @@ jobs:
 #        run: echo "$SSH_HOST"
 #      - name: Print SSH USER
 #        run: echo "$SSH_USER"
-      - name: Print workflow dir
-        run: echo "$REPO_DIR"
-      - name: Check workflow directory
-        run: ls -la $REPO_DIR
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check runner directory
+        run: ls -la
 #      - name: Run test command
 #        run: ssh staging 'echo "hello there" >> github-runner-was-here.txt'
