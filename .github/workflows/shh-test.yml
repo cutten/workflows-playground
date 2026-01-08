@@ -4,6 +4,10 @@ on: workflow_dispatch
 jobs:
   Run-file-creation-on-SSH-host:
     runs-on: ubuntu-latest
+    env:
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USER: ${{ env.SSH_USER }}
     steps:
       - name: Configure SSH
         run: |
@@ -17,9 +21,6 @@ jobs:
             IdentityFile ~/.ssh/staging.key
             StrictHostKeyChecking no
           END
-        env:
-          SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
-          SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
       - name: Print SSH KEY
         run: echo "$SSH_KEY"
       - name: Print SSH HOST
