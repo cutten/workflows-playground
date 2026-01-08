@@ -17,26 +17,29 @@ jobs:
       SSH_KEY: ${{ secrets.SSH_KEY }}
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USER: ${{ vars.SSH_USER }}
+      REPO_DIR: ${{ github.action_path }}
     steps:
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/staging.key
-          chmod 600 ~/.ssh/staging.key
-          cat >> ~/.ssh/config <<END
-          Host staging
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/staging.key
-            StrictHostKeyChecking no
-          END
-      - name: Print SSH KEY
-        run: echo "$SSH_KEY"
-      - name: Print SSH HOST
-        run: echo "$SSH_HOST"
-      - name: Print SSH USER
-        run: echo "$SSH_USER"
+#      - name: Configure SSH
+#        run: |
+#          mkdir -p ~/.ssh/
+#          echo "$SSH_KEY" > ~/.ssh/staging.key
+#          chmod 600 ~/.ssh/staging.key
+#          cat >> ~/.ssh/config <<END
+#          Host staging
+#            HostName $SSH_HOST
+#            User $SSH_USER
+#            IdentityFile ~/.ssh/staging.key
+#            StrictHostKeyChecking no
+#          END
+#      - name: Print SSH KEY
+#        run: echo "$SSH_KEY"
+#      - name: Print SSH HOST
+#        run: echo "$SSH_HOST"
+#      - name: Print SSH USER
+#        run: echo "$SSH_USER"
+      - name: Print workflow dir
+        run: echo "$$REPO_DIR"
       - name: Check workflow directory
-        run: ls -la ${{ github.action_path }}
-      - name: Run test command
-        run: ssh staging 'echo "hello there" >> github-runner-was-here.txt'
+        run: ls -la $REPO_DIR
+#      - name: Run test command
+#        run: ssh staging 'echo "hello there" >> github-runner-was-here.txt'
