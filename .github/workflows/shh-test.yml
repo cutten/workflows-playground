@@ -2,7 +2,7 @@ name: Test SSH Command execution
 run-name: ${{ github.actor }} is testing out GitHub Actions with SSH 🚀
 on: workflow_dispatch
 jobs:
-  Run file creation on SSH host:
+  Run-file-creation-on-SSH-host:
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
