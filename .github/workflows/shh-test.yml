@@ -20,10 +20,11 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
           SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
-      - name: Test env variables
-        run: |
-          echo "$SSH_KEY"
-          echo "$SSH_HOST"
-          echo "$SSH_USER"
+      - name: Print SSH KEY
+        run: echo "$SSH_KEY"
+      - name: Print SSH HOST
+        run: echo "$SSH_HOST"
+      - name: Print SSH USER
+        run: echo "$SSH_USER"
       - name: Run test command
         run: ssh staging 'echo "hello there" >> github-runner-was-here.txt'
