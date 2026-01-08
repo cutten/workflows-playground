@@ -1,10 +1,17 @@
 name: Test SSH Command execution
 run-name: ${{ github.actor }} is testing out GitHub Actions with SSH 🚀
-on: workflow_dispatch
+
+on:
+  workflow_dispatch:
+      environment:
+        description: 'Environment to update config'
+        type: environment
+        required: true
+
 jobs:
   Run-file-creation-on-SSH-host:
     runs-on: ubuntu-latest
-    environment: test-environment
+    environment: ${{ inputs.environment }}
     env:
       SSH_KEY: ${{ secrets.SSH_KEY }}
       SSH_HOST: ${{ secrets.SSH_HOST }}
