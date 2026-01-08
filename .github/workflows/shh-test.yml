@@ -7,7 +7,7 @@ jobs:
     env:
       SSH_KEY: ${{ secrets.SSH_KEY }}
       SSH_HOST: ${{ secrets.SSH_HOST }}
-      SSH_USER: ${{ env.SSH_USER }}
+      SSH_USER: ${{ vars.SSH_USER }}
     steps:
       - name: Configure SSH
         run: |
