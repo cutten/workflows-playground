@@ -36,5 +36,7 @@ jobs:
         run: echo "$SSH_HOST"
       - name: Print SSH USER
         run: echo "$SSH_USER"
+      - name: Check workflow directory
+        run: ll
       - name: Run test command
         run: ssh staging 'echo "hello there" >> github-runner-was-here.txt'
