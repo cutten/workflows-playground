@@ -38,7 +38,7 @@ jobs:
 #      - name: Print SSH USER
 #        run: echo "$SSH_USER"
       - name: Print workflow dir
-        run: echo "$$REPO_DIR"
+        run: echo "$REPO_DIR"
       - name: Check workflow directory
         run: ls -la $REPO_DIR
 #      - name: Run test command
