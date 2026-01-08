@@ -1,5 +1,5 @@
 name: Test SSH Command execution
-run-name: Config update for "${{ inputs.environment }}" environment by ${{ github.actor_id }}
+run-name: Config update for "${{ inputs.environment }}" environment by ${{ github.actor }}
 
 on:
   workflow_dispatch:
