@@ -1,0 +1,25 @@
+name: Test SSH Command execution
+run-name: ${{ github.actor }} is testing out GitHub Actions with SSH 🚀
+on: workflow_dispatch
+jobs:
+  Run file creation on SSH host:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $$SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
+
+      - name: Stop the server
+        run: ssh staging 'echo "hello there" >> github-runner-was-here.txt'
